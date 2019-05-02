@@ -27,12 +27,6 @@ $app->withFacades();
 
 $app->withEloquent();
 
-$app->configure('app');
-$app->configure('auth');
-$app->configure('cache');
-$app->configure('database');
-$app->configure('queue');
-
 /*|--------------------------------------------------------------------------
 | Register Container Bindings
 |--------------------------------------------------------------------------
@@ -84,12 +78,17 @@ $app->singleton(
 |
 */
 
-// $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
-// $app->register(App\Providers\EventServiceProvider::class);
-$app->register(Prettus\Repository\Providers\LumenRepositoryServiceProvider::class);
+$app->register(App\Providers\AppServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
+$app->register(App\Providers\EventServiceProvider::class);
 $app->register(Laravel\Passport\PassportServiceProvider::class);
 $app->register(Dusterio\LumenPassport\PassportServiceProvider::class);
+
+$app->configure('app');
+$app->configure('auth');
+$app->configure('cache');
+$app->configure('database');
+
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
@@ -102,7 +101,7 @@ $app->register(Dusterio\LumenPassport\PassportServiceProvider::class);
 */
 
 $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
-    require __DIR__.'/../routes/web.php';
+    require __DIR__.'/../routes/api.php';
 });
 
 return $app;

@@ -12,6 +12,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
+use ReflectionException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -57,25 +58,21 @@ class Handler extends ExceptionHandler
     {
         // Customize response when exception is instance of ValidationException
         if ($e instanceof ValidationException && $e->getResponse()) {
-            $errors = json_decode($e->getResponse()->getContent(), true);
+            $arrError = json_decode($e->getResponse()->getContent(), true);
             
-            return Api::response(['message' => $this->formatErrorsMessage($errors)], Response::HTTP_BAD_REQUEST);
+            return Api::response([MESSAGE_KEY => $this->formatErrorsMessage($arrError)], Response::HTTP_BAD_REQUEST);
         }
         
         if ($e instanceof NotFoundHttpException) {
-            return Api::response(['message' => 'Page not found'], Response::HTTP_NOT_FOUND);
+            return Api::response([MESSAGE_KEY => trans("message.page_not_found")], Response::HTTP_NOT_FOUND);
         }
         
         if ($e instanceof HttpException) {
-            return Api::response(['message' => $e->getMessage()], $e->getStatusCode());
+            return Api::response([MESSAGE_KEY => $e->getMessage()], $e->getStatusCode());
         }
         
-        if ($e instanceof QueryException) {
-            return Api::response(['message' => 'Server error'], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
-        
-        if ($e instanceof ErrorException) {
-            return Api::response(['message' => 'Server error'], Response::HTTP_INTERNAL_SERVER_ERROR);
+        if ($e instanceof QueryException || $e instanceof ErrorException || $e instanceof ReflectionException) {
+            return Api::response([MESSAGE_KEY => trans("message.server_error")], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
         
         return parent::render($request, $e);

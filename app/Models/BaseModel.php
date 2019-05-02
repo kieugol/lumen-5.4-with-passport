@@ -4,31 +4,32 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class BaseModel
+ * @package App\Models
+ */
 class BaseModel extends Model
 {
-
-    public static function getTableName()
+    
+    /**
+     * Get Table name
+     *
+     * @return string
+     */
+    public static function getTblName()
     {
         return (new static)->getTable();
     }
     
-    public static function getTbl()
+    /**
+     * Get column name with alias table
+     *
+     * @param $column
+     *
+     * @return string
+     */
+    public static function getColName($column)
     {
-        return (new static)->getTable();
-    }
-    
-    public static function getPriKeyName()
-    {
-        return self::getTableName() . '.' .  (new static)->getKeyName();
-    }
-    
-    public static function getColumnName($column)
-    {
-        return self::getTableName() . '.' . $column;
-    }
-    
-    public static function getCol($column)
-    {
-        return self::getTableName() . '.' . $column;
+        return self::getTblName() . '.' . $column;
     }
 }
