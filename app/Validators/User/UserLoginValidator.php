@@ -9,11 +9,11 @@ class UserLoginValidator implements AbstractValidator
     public static function rules()
     {
         return [
-            "email"    => "required|email",
-            "password" => 'required|string|min:3'
+            'email'    => 'required|email',
+            'password' => 'required|string|min:3',
         ];
     }
-    
+
     /**
      * @return array
      */

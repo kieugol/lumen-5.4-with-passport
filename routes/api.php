@@ -11,7 +11,6 @@
 |
 */
 
-
 $app->get('/', function () use ($app) {
     return $app->version();
 });
@@ -20,11 +19,11 @@ $app->group(['prefix' => 'api'], function () use ($app) {
     $app->post('/register', [
         'uses' => 'UserController@create',
     ]);
-    
+
     $app->post('/login', [
         'uses' => 'UserController@login',
     ]);
-    
+
     $app->get('/users/{id:[0-9]+}', [
         'middleware' => 'auth',
         'uses'       => 'UserController@getDetail',

@@ -5,24 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class BaseModel
- * @package App\Models
+ * Class BaseModel.
  */
 class BaseModel extends Model
 {
-    
     /**
-     * Get Table name
+     * Get Table name.
      *
      * @return string
      */
     public static function getTblName()
     {
-        return (new static)->getTable();
+        return (new static())->getTable();
     }
-    
+
     /**
-     * Get column name with alias table
+     * Get column name with alias table.
      *
      * @param $column
      *
@@ -30,6 +28,6 @@ class BaseModel extends Model
      */
     public static function getColName($column)
     {
-        return self::getTblName() . '.' . $column;
+        return self::getTblName().'.'.$column;
     }
 }

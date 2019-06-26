@@ -6,9 +6,8 @@ use App\Models\User;
 
 class UserRepository extends BaseRepository
 {
-    
     /**
-     * Specify Model class name
+     * Specify Model class name.
      *
      * @return string
      */
