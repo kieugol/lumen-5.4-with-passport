@@ -5,17 +5,16 @@ namespace App\Services;
 use Illuminate\Http\Response;
 
 /**
- * Class BaseService
- * @package App\Services
+ * Class BaseService.
  */
 class BaseService
 {
     protected $data = '';
     protected $message = '';
     protected $statusCode = Response::HTTP_OK;
-    
+
     /**
-     * Set status code for API
+     * Set status code for API.
      *
      * @param $statusCode
      */
@@ -23,9 +22,9 @@ class BaseService
     {
         $this->statusCode = $statusCode;
     }
-    
+
     /**
-     * Get status code for API
+     * Get status code for API.
      *
      * @return int
      */
@@ -33,9 +32,9 @@ class BaseService
     {
         return $this->statusCode;
     }
-    
+
     /**
-     * Set the data for the response
+     * Set the data for the response.
      *
      * @param $data
      */
@@ -43,9 +42,9 @@ class BaseService
     {
         $this->data = $data;
     }
-    
+
     /**
-     * Get the data for the response
+     * Get the data for the response.
      *
      * @return string
      */
@@ -53,9 +52,9 @@ class BaseService
     {
         return $this->data;
     }
-    
+
     /**
-     * Set the message
+     * Set the message.
      *
      * @param string $mgs
      */
@@ -65,7 +64,7 @@ class BaseService
     }
 
     /**
-     * Get the message
+     * Get the message.
      *
      * @return string
      */
@@ -75,7 +74,7 @@ class BaseService
     }
 
     /**
-     * Get response data for API
+     * Get response data for API.
      *
      * @return array
      */

@@ -3,16 +3,14 @@
 namespace App\Validators;
 
 /**
- * Interface AbstractValidator
- * @package App\Http\Validators
+ * Interface AbstractValidator.
  */
 interface AbstractValidator
 {
-
     /**
      * @return array
      */
-     public static function rules();
+    public static function rules();
 
     /**
      * @return array

@@ -8,5 +8,5 @@ return [
     'token_is_invalid'     => 'Token is invalid',
     'unauthorized'         => 'Unauthorized.',
     'not_found_user'       => 'Your email or password is incorrect.',
-    'not_found_data'       => 'Not found data.'
+    'not_found_data'       => 'Not found data.',
 ];
